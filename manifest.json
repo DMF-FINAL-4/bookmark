@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "1",
+  "name": "Global side panel",
   "version": "1.0",
   "description": "Shows how to display the same side panel on every site using the Side Panel API.",
   "icons": {
@@ -9,7 +9,7 @@
     "128": "images/icon-128.png"
   },
   "background": {
-    "service_worker": "service-worker.js"
+    "service_worker": "background.js"  // 변경: service-worker.js → background.js
   },
   "action": {
     "default_title": "Click to open panel"
@@ -17,5 +17,12 @@
   "side_panel": {
     "default_path": "sidepanel.html"
   },
-  "permissions": ["sidePanel", "storage", "<all_urls>"]
+  "permissions": [
+    "sidePanel",
+    "tabs",
+    "scripting",
+    "activeTab",
+    "storage"  // 추가: storage 권한
+  ],
+  "host_permissions": ["<all_urls>"]  // 모든 URL에 대한 접근 권한
 }

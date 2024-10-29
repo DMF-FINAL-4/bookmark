@@ -1,0 +1,45 @@
+manifest.json
+{
+  "manifest_version": 3,
+  "name": "Global side panel",
+  "version": "1.0",
+  "description": "Shows how to display the same side panel on every site using the Side Panel API.",
+  "icons": {
+    "16": "images/icon-16.png",
+    "48": "images/icon-48.png",
+    "128": "images/icon-128.png"
+  },
+  "background": {
+    "service_worker": "service-worker.js"
+  },
+  "action": {
+    "default_title": "Click to open panel"
+  },
+  "side_panel": {
+    "default_path": "sidepanel.html"
+  },
+  "permissions": ["sidePanel"]
+}
+
+service-worker.js
+chrome.runtime.onInstalled.addListener(() => {
+  chrome.sidePanel.setPanelBehavior({ openPanelOnActionClick: true });
+});
+
+sidepanel.html
+<html>
+    <meta charset="UTF-8">
+    <title>My Sidepanel</title>
+  </head>
+  <body>
+    <h1>사이드패널확장</h1>
+    <p>어디서든</p>
+    
+    <!-- 현재 페이지 저장 버튼 추가 -->
+    <button id="save-page-button">현재 페이지 저장</button>
+    
+    <script src="sidepanel.js"></script>
+    <script>
+
+sidepanel.js
+console.log('sidepanel.js');
